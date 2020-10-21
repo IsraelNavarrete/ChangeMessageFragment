@@ -70,18 +70,20 @@ cuando habia que cogerlo del view del fragment
 
 2º
 Sobreescribimos todos los metodos de ciclo de vida de los fragment en ambas clases para ver porque si cambiamos la pantalla
-a horizontal se reinicia la aplicacion y se buguea.
+a horizontal se reinicia la activity y se buguea.
 
-Este error ocurre debido a que al cambiar la pantalla (cambiar configuracion el idioma tambien ocurre)
+Este error ocurre debido a que al cambiar la pantalla (al cambiar configuracion el idioma tambien ocurre)
 se vuelve a crear la activity por tanto, se ejecuta de nuevo tanto el SendMessageFragment
 (debido a que se crea la activity) y el ViewMessageActivity (debido que es la pantalla que estamos cargando)
 
-Para controlar este error en el método OnCreate() de la activity el Bundle savedInstanceState preguntamos si es null. Al ser
-null hacemos que cree la activity, de no serlo que no haga nada
+Para controlar este error en el método OnCreate() de la activity el Bundle savedInstanceState preguntamos si es null
+hacemos que cree el fragment, de no serlo que no haga nada
 
 
 3º
 Añadimos los fragments a su pila para que cuando le demos al boton back del movil no se cierre automaticamente
+ft.addToBackStack(null);
+
 
 Arreglamos el boton ShowAbout creando un metodo onClick()
 
